@@ -64,9 +64,9 @@ curl -x http://USER:PASSWORD@gw.weproxy.com.tr:8989 https://api.ipify.org
 
 ### Code samples
 
-- [Node.js](https://github.com/we1town-dev/nodejs-proxy)  
-- [PHP](https://github.com/we1town-dev/php-proxy)  
-- [Python](https://github.com/we1town-dev/python-proxy)  
+- [Node.js](https://github.com/weproxy-io/nodejs-proxy)  
+- [PHP](https://github.com/weproxy-io/php-proxy)  
+- [Python](https://github.com/weproxy-io/python-proxy)  
 - Site docs: [Integrations](https://weproxy.io/en/integrations)
 
 ## Use cases that fit residential well
@@ -82,7 +82,7 @@ curl -x http://USER:PASSWORD@gw.weproxy.com.tr:8989 https://api.ipify.org
 - Re-check exit IP after credential or package changes  
 - Separate “discovery crawl” (rotating) from “logged-in” (sticky) pipelines  
 - Pair with [Proxy Checker](https://weproxy.io/en/tools/proxy-checker) when validating formats  
-- Free lists are not residential substitutes — see [free-proxy-list](https://github.com/we1town-dev/free-proxy-list)
+- Free lists are not residential substitutes — see [free-proxy-list](https://github.com/weproxy-io/free-proxy-list)
 
 ## FAQ
 
@@ -104,7 +104,7 @@ Static/sticky packages are built for identity continuity. Rotating packages inte
 
 ## Related
 
-- [Paid proxy servers overview](https://github.com/we1town-dev/paid-proxy-servers)  
+- [Paid proxy servers overview](https://github.com/weproxy-io/paid-proxy-servers)  
 - [WeProxy homepage](https://weproxy.io)  
 - [support@weproxy.io](mailto:support@weproxy.io)  
 
