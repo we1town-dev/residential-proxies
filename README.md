@@ -2,35 +2,51 @@
 
 [![WeProxy — Residential proxies](./assets/banner.png)](https://weproxy.io/en/proxies/rotating-ipv4-residential?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies)
 
-[![Website](https://img.shields.io/badge/Website-weproxy.io-111111?style=for-the-badge)](https://weproxy.io/?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies) [![Pricing](https://img.shields.io/badge/Pricing-Plans-2563eb?style=for-the-badge)](https://weproxy.io/en/pricing?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies)
+[![Website](https://img.shields.io/badge/Website-weproxy.io-111111?style=for-the-badge)](https://weproxy.io/?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies)
+[![Residential](https://img.shields.io/badge/Product-Residential-16a34a?style=for-the-badge)](https://weproxy.io/en/proxies/rotating-ipv4-residential?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies)
+[![Pricing](https://img.shields.io/badge/Pricing-Plans-2563eb?style=for-the-badge)](https://weproxy.io/en/pricing?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies)
 
-**Residential proxies** route traffic through IP addresses assigned by consumer ISPs. They are commonly used when datacenter exits are blocked or when you need geo-realistic egress for scraping, ads QA, and research.
+**Residential proxies** exit through IP addresses associated with consumer ISPs — useful when datacenter ASNs are filtered and you need geo-realistic browsing, scraping, or ads QA.
 
-Maintained by [WeProxy](https://weproxy.io) — residential, mobile, datacenter, and ISP proxy products.
+This guide covers how residential differs from datacenter/mobile, rotating vs static, and how to connect via the [WeProxy](https://weproxy.io) gateway.
 
-## What are residential proxies?
+---
 
-A residential proxy uses an IP that looks like a normal home or broadband connection. Compared with classic datacenter proxies:
+## Residential vs other IP types
 
-| | Residential | Datacenter |
-| --- | --- | --- |
-| IP reputation | ISP / consumer-like | Hosting / cloud ASN |
-| Typical cost | Higher per GB | Lower per GB |
-| Best for | Harder targets, geo checks | Volume, cheaper hops |
-| WeProxy | [Rotating residential](https://weproxy.io/en/proxies/rotating-ipv4-residential), [Static residential](https://weproxy.io/en/proxies/static-ipv4-residential) | [Rotating datacenter](https://weproxy.io/en/proxies/rotating-ipv4-datacenter) |
+| | Residential | Datacenter | Mobile |
+| --- | --- | --- | --- |
+| Look & feel | Home / broadband ISP | Hosting / cloud ASN | Carrier / LTE |
+| Typical cost | Higher per GB | Lower per GB | Premium |
+| Strength | Harder targets, geo trust | Raw speed & volume | Carrier reputation |
+| WeProxy | [Rotating](https://weproxy.io/en/proxies/rotating-ipv4-residential) · [Static](https://weproxy.io/en/proxies/static-ipv4-residential) · [Premium rotating](https://weproxy.io/en/proxies/premium-rotating-residential) | [DC rotating](https://weproxy.io/en/proxies/rotating-ipv4-datacenter) | [Mobile](https://weproxy.io/en/proxies/mobile-proxy) |
 
-See also [Premium rotating residential](https://weproxy.io/en/proxies/premium-rotating-residential) and full [Pricing](https://weproxy.io/en/pricing).
+Also see [ISP proxy](https://weproxy.io/en/proxies/isp-proxy) when you want sticky ISP-sourced identity without classic “hosting DC” fingerprints.
 
-## Why teams use residential proxies
+## Rotating vs static residential
 
-- Fewer blocks on sites that fingerprint hosting ASNs
-- Country / city targeting for localization and ads verification
-- Sticky sessions for logged-in flows (when the product supports sticky)
-- Complementary line next to mobile and ISP products
+**Rotating residential**  
+Exit IP changes on an interval or per request. Good for crawling, SERP checks, and broad coverage.
 
-Always follow the target site’s terms and WeProxy’s acceptable use policy.
+→ [Rotating IPv4 residential](https://weproxy.io/en/proxies/rotating-ipv4-residential?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies)
 
-## How to connect (WeProxy gateway)
+**Static / sticky residential**  
+Keep a fixed or long-lived residential IP for sessions that need continuity (logins, carts, multi-step flows).
+
+→ [Static IPv4 residential](https://weproxy.io/en/proxies/static-ipv4-residential?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies)
+
+Pick the model from [Pricing](https://weproxy.io/en/pricing) based on workflow — not “quality myths.” Always follow destination terms and WeProxy acceptable use.
+
+## Why teams choose residential
+
+- Fewer blocks on sites that fingerprint hosting networks  
+- Country / city style targeting for localization and ads verification  
+- Complementary line next to mobile and ISP products  
+- Same WeProxy gateway pattern as other packages  
+
+Coverage overview: [Locations](https://weproxy.io/en/locations?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies)
+
+## Connect with WeProxy
 
 ```text
 Host: gw.weproxy.com.tr
@@ -38,61 +54,59 @@ Port: 8989
 URL:  http://USER:PASSWORD@gw.weproxy.com.tr:8989
 ```
 
-Credentials are issued in the [customer panel](https://my.we1.town). Use the package username for your residential product — do not invent undocumented username formats.
+Use the residential package username from [my.we1.town](https://my.we1.town). HTTP(S) is the default path; SOCKS5 only if enabled for your package.
 
-HTTP(S) is the default path for most clients. SOCKS5 may be available depending on the package settings in the panel.
-
-### cURL
+### Verify exit IP
 
 ```bash
 curl -x http://USER:PASSWORD@gw.weproxy.com.tr:8989 https://api.ipify.org
 ```
 
-### Language examples
+### Code samples
 
-- Node.js — see the `nodejs-proxy` companion repo
-- PHP — see `php-proxy`
-- Python — see `python-proxy`
+- [Node.js](https://github.com/we1town-dev/nodejs-proxy)  
+- [PHP](https://github.com/we1town-dev/php-proxy)  
+- [Python](https://github.com/we1town-dev/python-proxy)  
+- Site docs: [Integrations](https://weproxy.io/en/integrations)
 
-Site docs: [Integrations](https://weproxy.io/en/integrations).
+## Use cases that fit residential well
 
-## Rotating vs static residential
+1. **Harder scrape targets** where DC pools burn quickly  
+2. **Ad verification** by market / creative geo  
+3. **SEO monitoring** that should look like real-user egress  
+4. **Localization QA** for language and currency pages  
+5. **Sticky sessions** for multi-step authenticated flows (static/sticky products)
 
-- **Rotating:** exit IP changes on a schedule or per request — good for crawling and broad coverage ([rotating IPv4 residential](https://weproxy.io/en/proxies/rotating-ipv4-residential)).
-- **Static / sticky:** keep a fixed or long-lived residential IP — good for sessions that need identity continuity ([static IPv4 residential](https://weproxy.io/en/proxies/static-ipv4-residential)).
+## Operational tips
 
-## Use cases
-
-- Web scraping and price intelligence
-- Ad verification and creative QA by geo
-- SEO and SERP monitoring
-- Market research and localization testing
-- Social / multi-profile tooling (comply with platform rules)
+- Re-check exit IP after credential or package changes  
+- Separate “discovery crawl” (rotating) from “logged-in” (sticky) pipelines  
+- Pair with [Proxy Checker](https://weproxy.io/en/tools/proxy-checker) when validating formats  
+- Free lists are not residential substitutes — see [free-proxy-list](https://github.com/we1town-dev/free-proxy-list)
 
 ## FAQ
 
-### Residential vs mobile?
+**Residential vs mobile?**  
+Mobile uses carrier exits; residential uses ISP broadband-style IPs. Choose based on how the target filters traffic — compare on [weproxy.io](https://weproxy.io).
 
-Mobile proxies use carrier / LTE exits. Residential uses ISP broadband-style IPs. Pick based on the target’s filtering — compare on [weproxy.io](https://weproxy.io).
+**Do I need SOCKS5 for residential?**  
+Only if your app requires SOCKS. Most HTTP libraries work with the HTTP proxy URL above.
 
-### Do I need SOCKS5?
-
-Only if your application requires SOCKS. Most HTTP libraries work with an HTTP proxy URL to the WeProxy gateway.
-
-### How do I verify the exit IP?
-
-Request an echo service through the proxy, e.g. `https://api.ipify.org`, and confirm the returned address matches expectations.
+**Can I share one IP across tools?**  
+Static/sticky packages are built for identity continuity. Rotating packages intentionally change exits.
 
 ## Get started
 
-1. Read product pages on [weproxy.io](https://weproxy.io)
-2. Choose a plan on [Pricing](https://weproxy.io/en/pricing)
-3. Create credentials at [my.we1.town](https://my.we1.town)
-4. Run the cURL check above
+1. Read [Rotating residential](https://weproxy.io/en/proxies/rotating-ipv4-residential?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies)  
+2. Compare plans on [Pricing](https://weproxy.io/en/pricing?utm_source=github&utm_medium=referral&utm_campaign=residential-proxies)  
+3. Issue credentials at [my.we1.town](https://my.we1.town)  
+4. Smoke-test with cURL  
 
-## Suggested GitHub topics
+## Related
 
-`residential-proxy` · `residential-proxies` · `proxy` · `proxies` · `web-scraping` · `socks5` · `http-proxy` · `geo-targeting`
+- [Paid proxy servers overview](https://github.com/we1town-dev/paid-proxy-servers)  
+- [WeProxy homepage](https://weproxy.io)  
+- [support@weproxy.io](mailto:support@weproxy.io)  
 
 ## License
 
